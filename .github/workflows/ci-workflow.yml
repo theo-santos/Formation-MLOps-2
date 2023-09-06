@@ -18,7 +18,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Install dev dependencies
-        run:  pip install -r requirements_test.txt
+        run: |
+          pip install -r requirements_test.txt
+          pip install flake8 vulture
       - name: Run Linter
         run:  python -m flake8
       - name: Run Vulture
