@@ -18,7 +18,8 @@ def train_model(features: pd.DataFrame, model_registry_folder: str) -> None:
     X = features.drop(columns=[target])
     y = features[target]
     with mlflow.start_run():
-        # insert autolog here ...
+        # insert autolog here ... DONE
+        mlflow.sklearn.autolog(log_models=True, registered_model_name="MyFirstModel")
         model = RandomForestRegressor(n_estimators=1, max_depth=10, n_jobs=1)
         model.fit(X, y)
     time_str = time.strftime('%Y%m%d-%H%M%S')
