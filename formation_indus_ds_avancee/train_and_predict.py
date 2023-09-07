@@ -3,6 +3,7 @@ import time
 
 import joblib
 import pandas as pd
+from datetime import datetime
 from sklearn.ensemble import RandomForestRegressor
 
 
@@ -18,7 +19,7 @@ def train_model(features: pd.DataFrame, model_registry_folder: str) -> None:
     y = features[target]
     model = RandomForestRegressor(n_estimators=1, max_depth=10, n_jobs=1)
     model.fit(X, y)
-    joblib.dump(model, os.path.join(model_registry_folder, 'model.joblib'))
+    joblib.dump(model, os.path.join(model_registry_folder, f"{datetime.now().strftime('%Y%m%d-%H%M%S')}.joblib"))
 
 
 def predict_with_io(features_path: str, model_path: str, predictions_folder: str) -> None:
